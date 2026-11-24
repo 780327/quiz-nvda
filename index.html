@@ -17,7 +17,15 @@
   <main>
     <!-- Pasek zakładek według wzorca WAI-ARIA Tabs.
          Tab wchodzi tylko na wybraną zakładkę, strzałki przełączają zakładki. -->
-    <div role="tablist" aria-label="Tryb nauki">
+    <!-- Podpowiedź stoi przed zakładkami, żeby NVDA przeczytał ją wcześniej.
+         W trybie przeglądania NVDA sam obsługuje strzałki, więc trzeba
+         przełączyć się w tryb formularza. -->
+    <p id="podpowiedz-zakladki">
+      Zakładki przełączasz strzałką w lewo i w prawo. W NVDA najpierw naciśnij
+      NVDA+Spacja, żeby włączyć tryb formularza. Możesz też dojść strzałką w dół
+      do zakładki i nacisnąć Enter.
+    </p>
+    <div role="tablist" aria-label="Tryb nauki" aria-describedby="podpowiedz-zakladki">
       <button type="button" role="tab" id="zakladka-lekcja"
               aria-selected="true" aria-controls="panel-lekcja" tabindex="0">Lekcja</button>
       <button type="button" role="tab" id="zakladka-quiz"
