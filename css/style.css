@@ -1,0 +1,166 @@
+/* style.css – ciemny motyw z dużym kontrastem.
+   Najważniejsze: wyraźny fokus i duże, czytelne elementy. */
+
+:root {
+  --tlo: #121212;
+  --tlo-pole: #1e1e1e;
+  --tekst: #f5f5f5;
+  --akcent: #ffd54a;     /* żółty – fokus i wybrana zakładka */
+  --dobrze: #7ee787;
+  --zle: #ff9b9b;
+  --ramka: #8a8a8a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 1rem;
+  background: var(--tlo);
+  color: var(--tekst);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+header,
+main {
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+
+/* Przyciski, pola wyboru i listy rozwijane */
+button,
+select {
+  font: inherit;
+  color: var(--tekst);
+  background: var(--tlo-pole);
+  border: 2px solid var(--ramka);
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+button:hover,
+select:hover {
+  border-color: var(--tekst);
+}
+
+/* Widoczny fokus – gruba żółta obwódka */
+:focus-visible {
+  outline: 4px solid var(--akcent);
+  outline-offset: 3px;
+}
+
+/* Nagłówki z tabindex="-1" też pokazują, gdzie jest fokus */
+h3[tabindex="-1"]:focus {
+  outline: 4px solid var(--akcent);
+  outline-offset: 3px;
+}
+
+/* Zakładki */
+[role="tablist"] {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  border-bottom: 2px solid var(--ramka);
+}
+
+[role="tab"] {
+  border-bottom: none;
+  border-radius: 0.4rem 0.4rem 0 0;
+}
+
+/* Wybrana zakładka: inny kolor ORAZ grube podkreślenie,
+   żeby nie polegać na samym kolorze */
+[role="tab"][aria-selected="true"] {
+  background: var(--akcent);
+  color: #000;
+  font-weight: bold;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+/* Ustawienia: kategoria i układ */
+.ustawienia {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+fieldset {
+  border: 2px solid var(--ramka);
+  border-radius: 0.4rem;
+}
+
+input[type="radio"] {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* Lista skrótów w lekcji */
+.skrot {
+  border-left: 4px solid var(--akcent);
+  padding-left: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.skrot h4 {
+  margin-bottom: 0.25rem;
+}
+
+kbd {
+  font-family: inherit;
+  font-weight: bold;
+  color: var(--akcent);
+}
+
+/* Odpowiedzi w quizie – jedna pod drugą, duże i szerokie */
+#quiz-odpowiedzi {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+#quiz-odpowiedzi button {
+  text-align: left;
+}
+
+#quiz-odpowiedzi button.poprawna {
+  border-color: var(--dobrze);
+  color: var(--dobrze);
+}
+
+#quiz-odpowiedzi button.bledna {
+  border-color: var(--zle);
+  color: var(--zle);
+}
+
+#quiz-komunikat {
+  font-weight: bold;
+  min-height: 1.5em;
+}
+
+/* Trochę mniejsza czcionka na wąskich ekranach (telefon) */
+@media (max-width: 30rem) {
+  body {
+    font-size: 1.1rem;
+  }
+}

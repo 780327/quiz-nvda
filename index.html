@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!-- lang="pl" sprawia, że NVDA czyta stronę polskim głosem -->
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skróty NVDA – Lekcje i Quiz</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Skróty NVDA – Lekcje i Quiz</h1>
+    <!-- aria-pressed mówi NVDA, czy przycisk jest wciśnięty (dźwięki wyciszone) -->
+    <button type="button" id="przycisk-wycisz" aria-pressed="false">Wycisz dźwięki</button>
+  </header>
+
+  <main>
+    <!-- Pasek zakładek według wzorca WAI-ARIA Tabs.
+         Tab wchodzi tylko na wybraną zakładkę, strzałki przełączają zakładki. -->
+    <div role="tablist" aria-label="Tryb nauki">
+      <button type="button" role="tab" id="zakladka-lekcja"
+              aria-selected="true" aria-controls="panel-lekcja" tabindex="0">Lekcja</button>
+      <button type="button" role="tab" id="zakladka-quiz"
+              aria-selected="false" aria-controls="panel-quiz" tabindex="-1">Quiz</button>
+    </div>
+
+    <!-- Panel 1: Lekcja -->
+    <section role="tabpanel" id="panel-lekcja" aria-labelledby="zakladka-lekcja">
+      <h2>Lekcja</h2>
+      <p>
+        Wybierz kategorię i układ klawiatury. Pod spodem pojawi się lista skrótów.
+        Każdy skrót jest nagłówkiem, więc w NVDA możesz skakać między nimi klawiszem H.
+        Klawisz NVDA to domyślnie Insert.
+      </p>
+
+      <div class="ustawienia">
+        <label for="lekcja-kategoria">Kategoria</label>
+        <select id="lekcja-kategoria"></select>
+
+        <fieldset>
+          <legend>Układ klawiatury NVDA</legend>
+          <label><input type="radio" name="lekcja-uklad" value="desktop" checked> Desktop</label>
+          <label><input type="radio" name="lekcja-uklad" value="laptop"> Laptop</label>
+        </fieldset>
+      </div>
+
+      <!-- Tu skrypt lekcja.js wstawi listę skrótów -->
+      <div id="lekcja-lista"></div>
+    </section>
+
+    <!-- Panel 2: Quiz (ukryty na starcie atrybutem hidden) -->
+    <section role="tabpanel" id="panel-quiz" aria-labelledby="zakladka-quiz" hidden>
+      <h2>Quiz</h2>
+
+      <!-- Ekran startowy quizu -->
+      <div id="quiz-start">
+        <p>
+          Każde pytanie ma 3 odpowiedzi. Gdy fokus jest na przyciskach odpowiedzi,
+          możesz też nacisnąć klawisz 1, 2 lub 3 (w NVDA w trybie formularza).
+        </p>
+        <div class="ustawienia">
+          <label for="quiz-kategoria">Kategoria</label>
+          <select id="quiz-kategoria"></select>
+
+          <fieldset>
+            <legend>Układ klawiatury NVDA</legend>
+            <label><input type="radio" name="quiz-uklad" value="desktop" checked> Desktop</label>
+            <label><input type="radio" name="quiz-uklad" value="laptop"> Laptop</label>
+          </fieldset>
+        </div>
+        <button type="button" id="quiz-rozpocznij">Rozpocznij quiz</button>
+      </div>
+
+      <!-- Ekran pytania -->
+      <div id="quiz-pytanie" hidden>
+        <!-- tabindex="-1" pozwala przenieść tu fokus z JavaScriptu -->
+        <h3 id="quiz-tresc" tabindex="-1"></h3>
+        <div id="quiz-odpowiedzi"></div>
+        <button type="button" id="quiz-nastepne" hidden>Następne pytanie</button>
+      </div>
+
+      <!-- Ekran końcowy -->
+      <div id="quiz-koniec" hidden>
+        <h3 id="quiz-koniec-naglowek" tabindex="-1">Koniec gry</h3>
+        <p id="quiz-wynik"></p>
+        <button type="button" id="quiz-jeszcze-raz">Zagraj jeszcze raz</button>
+      </div>
+
+      <!-- Region aria-live: NVDA sam przeczyta każdy tekst, który tu wstawimy -->
+      <p id="quiz-komunikat" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <!-- Skrypty na końcu strony: wtedy cały HTML jest już wczytany -->
+  <script src="js/zakladki.js"></script>
+  <script src="js/dzwieki.js"></script>
+  <script src="js/dane.js"></script>
+  <script src="js/losowanie.js"></script>
+  <script src="js/lekcja.js"></script>
+  <script src="js/quiz.js"></script>
+</body>
+</html>
