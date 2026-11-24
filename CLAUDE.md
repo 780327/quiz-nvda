@@ -30,12 +30,14 @@ Testuje każdą zmianę czytnikiem ekranu, więc dostępność jest ważniejsza 
 ```
 index.html          – szkielet strony, dwie zakładki
 css/style.css       – wygląd (ciemny motyw, duży kontrast)
+js/zakladki.js      – przełączanie zakładek (wzorzec WAI-ARIA Tabs)
 js/dane.js          – wczytywanie i filtrowanie skrótów
+js/losowanie.js     – logika losowania quizu (tasowanie, pytania, błędne odpowiedzi)
 js/lekcja.js        – zakładka Lekcja
-js/quiz.js          – zakładka Quiz (losowanie, punktacja)
-js/dzwieki.js       – efekty dźwiękowe
+js/quiz.js          – zakładka Quiz (wyświetlanie pytań, punktacja)
+js/dzwieki.js       – efekty dźwiękowe (Web Audio API, bez plików audio) i wyciszanie
 dane/skroty.json    – wszystkie skróty (jedno źródło danych)
-dzwieki/            – pliki audio (poprawna, błędna, koniec gry)
+testy/testy.js      – testy losowania, uruchamiane poleceniem: node testy/testy.js
 ```
 
 ## Format danych – `dane/skroty.json`
