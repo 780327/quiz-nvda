@@ -143,6 +143,10 @@ kbd {
   text-align: left;
 }
 
+#quiz-odpowiedzi button[aria-disabled="true"] {
+  cursor: default;
+}
+
 #quiz-odpowiedzi button.poprawna {
   border-color: var(--dobrze);
   color: var(--dobrze);
