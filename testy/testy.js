@@ -1,7 +1,7 @@
 // testy.js – proste testy logiki losowania. Uruchomienie w terminalu:
 //   node testy/testy.js
-// Wczytujemy pliki dane.js i losowanie.js tak, jak robi to przeglądarka,
-// i sprawdzamy wynik na prawdziwych danych z dane/skroty.json.
+// Wczytujemy pliki skroty.js, dane.js i losowanie.js tak, jak robi to
+// przeglądarka, i sprawdzamy wynik na prawdziwych danych.
 
 const fs = require('fs');
 const path = require('path');
@@ -9,10 +9,10 @@ const vm = require('vm');
 
 const folder = path.join(__dirname, '..');
 const kontekst = vm.createContext({ Math: Math });
-['js/dane.js', 'js/losowanie.js'].forEach(function (plik) {
+['dane/skroty.js', 'js/dane.js', 'js/losowanie.js'].forEach(function (plik) {
   vm.runInContext(fs.readFileSync(path.join(folder, plik), 'utf8'), kontekst);
 });
-const skroty = JSON.parse(fs.readFileSync(path.join(folder, 'dane/skroty.json'), 'utf8'));
+const skroty = vm.runInContext('SKROTY', kontekst);
 
 let udane = 0;
 let nieudane = 0;

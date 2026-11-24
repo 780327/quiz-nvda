@@ -22,9 +22,9 @@ Testuje każdą zmianę czytnikiem ekranu, więc dostępność jest ważniejsza 
 ## Technologia
 - Czysty HTML, CSS i JavaScript, bez frameworków i bez etapu budowania.
 - Ma działać po otwarciu `index.html` i na GitHub Pages.
-- Dane wczytujemy z pliku `dane/skroty.json` przez `fetch()`.
-  Uwaga: `fetch()` nie działa przy otwieraniu pliku bezpośrednio (file://),
-  więc lokalnie używamy prostego serwera, np. `python -m http.server`.
+- Dane są w pliku `dane/skroty.js` (stała `SKROTY`), wczytywanym zwykłym `<script>`.
+  Nie używamy `fetch()` i pliku `.json`, bo `fetch()` nie działa po otwarciu
+  `index.html` bezpośrednio z folderu (file://), a strona ma działać bez serwera.
 
 ## Struktura plików
 ```
@@ -36,11 +36,12 @@ js/losowanie.js     – logika losowania quizu (tasowanie, pytania, błędne odp
 js/lekcja.js        – zakładka Lekcja
 js/quiz.js          – zakładka Quiz (wyświetlanie pytań, punktacja)
 js/dzwieki.js       – efekty dźwiękowe (Web Audio API, bez plików audio) i wyciszanie
-dane/skroty.json    – wszystkie skróty (jedno źródło danych)
+dane/skroty.js      – wszystkie skróty (jedno źródło danych)
 testy/testy.js      – testy losowania, uruchamiane poleceniem: node testy/testy.js
 ```
 
-## Format danych – `dane/skroty.json`
+## Format danych – `dane/skroty.js`
+Plik zaczyna się od `const SKROTY = [` i zawiera tablicę obiektów w formacie JSON.
 Lekcja i quiz korzystają z tego samego pliku. Każdy skrót to jeden obiekt:
 ```json
 {

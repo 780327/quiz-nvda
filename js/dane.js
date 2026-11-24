@@ -1,24 +1,8 @@
-// dane.js – wczytywanie i filtrowanie skrótów z pliku dane/skroty.json.
-// Uwaga: fetch() nie działa po otwarciu pliku bezpośrednio (file://),
-// dlatego lokalnie uruchamiamy prosty serwer: python -m http.server
+// dane.js – filtrowanie skrótów.
+// Same skróty są w pliku dane/skroty.js w stałej SKROTY.
+// Ten plik jest wczytany w index.html przed dane.js.
 
 const WSZYSTKIE = 'Wszystkie';
-
-// Wczytuje plik JSON raz i zapamiętuje wynik (obietnicę), żeby lekcja
-// i quiz nie pobierały tego samego pliku dwa razy.
-let obietnicaDanych = null;
-
-function wczytajSkroty() {
-  if (obietnicaDanych === null) {
-    obietnicaDanych = fetch('dane/skroty.json').then(function (odpowiedz) {
-      if (!odpowiedz.ok) {
-        throw new Error('Nie udało się wczytać pliku ze skrótami.');
-      }
-      return odpowiedz.json();
-    });
-  }
-  return obietnicaDanych;
-}
 
 // Zwraca listę nazw kategorii bez powtórzeń, w kolejności z pliku.
 function pobierzKategorie(skroty) {

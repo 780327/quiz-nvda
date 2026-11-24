@@ -1,4 +1,9 @@
-[
+// skroty.js – wszystkie skróty (jedno źródło danych dla lekcji i quizu).
+// Dane są w pliku .js, a nie .json, bo plik .js wczytuje się zwykłym
+// znacznikiem <script>. Dzięki temu strona działa także po otwarciu
+// index.html prosto z folderu, bez serwera.
+
+const SKROTY = [
   { "id": "nvda-menu", "kategoria": "NVDA – ogólne", "uklad": "oba", "skrot": "NVDA+N", "skrot_laptop": null, "akcja": "Otwiera menu NVDA", "wyjasnienie": "Z menu NVDA dostaniesz się do ustawień, narzędzi, pomocy i zamykania programu.", "do_sprawdzenia": false },
   { "id": "nvda-zamknij", "kategoria": "NVDA – ogólne", "uklad": "oba", "skrot": "NVDA+Q", "skrot_laptop": null, "akcja": "Zamyka NVDA", "wyjasnienie": "Kończy pracę czytnika ekranu. NVDA zwykle pyta jeszcze o potwierdzenie.", "do_sprawdzenia": false },
   { "id": "nvda-przerwij-mowe", "kategoria": "NVDA – ogólne", "uklad": "oba", "skrot": "Ctrl", "skrot_laptop": null, "akcja": "Przerywa mowę", "wyjasnienie": "Jedno naciśnięcie klawisza Ctrl od razu ucisza NVDA. Przydaje się, gdy czytany tekst jest za długi.", "do_sprawdzenia": false },
@@ -127,4 +132,4 @@
   { "id": "win-widok-zadan", "kategoria": "Windows", "uklad": "oba", "skrot": "Win+Tab", "skrot_laptop": null, "akcja": "Otwiera widok zadań", "wyjasnienie": "Pokazuje otwarte okna i pulpity wirtualne.", "do_sprawdzenia": false },
   { "id": "win-menu-kontekstowe", "kategoria": "Windows", "uklad": "oba", "skrot": "Shift+F10", "skrot_laptop": null, "akcja": "Otwiera menu kontekstowe zaznaczonego elementu", "wyjasnienie": "Działa jak kliknięcie prawym przyciskiem myszy.", "do_sprawdzenia": false },
   { "id": "win-wyszukaj", "kategoria": "Windows", "uklad": "oba", "skrot": "Win+S", "skrot_laptop": null, "akcja": "Otwiera wyszukiwanie", "wyjasnienie": "Szukasz programów, plików i ustawień.", "do_sprawdzenia": false }
-]
+];

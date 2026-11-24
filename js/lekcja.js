@@ -6,12 +6,11 @@
 
 const lekcjaKategoria = document.getElementById('lekcja-kategoria');
 const lekcjaLista = document.getElementById('lekcja-lista');
-let lekcjaSkroty = [];
 
 // Rysuje listę skrótów dla wybranej kategorii i układu.
 function pokazLekcje() {
   const uklad = wybranyUklad('lekcja-uklad');
-  const wybrane = filtrujSkroty(lekcjaSkroty, lekcjaKategoria.value, uklad)
+  const wybrane = filtrujSkroty(SKROTY, lekcjaKategoria.value, uklad)
     .filter(function (wpis) { return !wpis.do_sprawdzenia; });
 
   // Czyścimy poprzednią listę.
@@ -46,17 +45,9 @@ function pokazLekcje() {
   });
 }
 
-// Start: wczytaj dane, wypełnij listę kategorii i pokaż lekcję.
-wczytajSkroty()
-  .then(function (skroty) {
-    lekcjaSkroty = skroty;
-    wypelnijListeKategorii(lekcjaKategoria, pobierzKategorie(skroty));
-    pokazLekcje();
-  })
-  .catch(function (blad) {
-    lekcjaLista.textContent = blad.message +
-      ' Jeśli otwierasz plik bezpośrednio z dysku, uruchom serwer: python -m http.server';
-  });
+// Start: wypełnij listę kategorii i pokaż lekcję.
+wypelnijListeKategorii(lekcjaKategoria, pobierzKategorie(SKROTY));
+pokazLekcje();
 
 // Lista odświeża się od razu po zmianie kategorii lub układu.
 lekcjaKategoria.addEventListener('change', pokazLekcje);

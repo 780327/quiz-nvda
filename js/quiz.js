@@ -12,7 +12,6 @@ const naglowekKoniec = document.getElementById('quiz-koniec-naglowek');
 const poleWyniku = document.getElementById('quiz-wynik');
 const komunikat = document.getElementById('quiz-komunikat');
 
-let quizSkroty = [];
 let pytania = [];
 let numerPytania = 0;
 let punkty = 0;
@@ -27,7 +26,7 @@ function pokazEkran(ekran) {
 
 function rozpocznijGre() {
   const uklad = wybranyUklad('quiz-uklad');
-  const pula = filtrujSkroty(quizSkroty, quizKategoria.value, uklad);
+  const pula = filtrujSkroty(SKROTY, quizKategoria.value, uklad);
   pytania = przygotujGre(pula, uklad);
 
   if (pytania.length === 0) {
@@ -161,12 +160,5 @@ document.getElementById('quiz-ustawienia').addEventListener('click', function ()
 });
 przyciskNastepne.addEventListener('click', nastepnePytanie);
 
-// Start: wczytaj dane i wypełnij listę kategorii.
-wczytajSkroty()
-  .then(function (skroty) {
-    quizSkroty = skroty;
-    wypelnijListeKategorii(quizKategoria, pobierzKategorie(skroty));
-  })
-  .catch(function (blad) {
-    komunikat.textContent = blad.message;
-  });
+// Start: wypełnij listę kategorii.
+wypelnijListeKategorii(quizKategoria, pobierzKategorie(SKROTY));
